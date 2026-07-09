@@ -17,6 +17,32 @@ setupMetrics(app, { serviceName: 'gateway', serviceVersion: '1.0.0' });
 
 app.use(metricsMiddleware);
 
+users: process.env.USERS_SERVICE_URL || 'http://localhost:3006',
+
+app.get('/health', (req, res) => {
+  res.json({
+    service: 'gateway',
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    services
+  });
+});
+
+app.get('/', (req, res) => {
+  res.json({
+    name: 'NY Knicks Store API Gateway',
+    status: 'running',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      auth: '/api/auth',
+      products: '/api/products',
+      orders: '/api/orders',
+      users: '/api/users'
+    }
+  });
+});
+
 const services = {
   auth: process.env.AUTH_SERVICE_URL || 'http://localhost:3002',
   products: process.env.PRODUCTS_SERVICE_URL || 'http://localhost:3003',
