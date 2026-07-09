@@ -116,7 +116,7 @@ flowchart TD
 - The `update-manifests` job patches the image tag in every Kubernetes manifest and commits the change back
 - This commit is what ArgoCD detects to trigger a rollout
 
-**Where to check:** GitHub repo → **Actions** tab → **Boutique CI Pipeline**
+**Where to check:** GitHub repo → **Actions** tab → **Knicks CI Pipeline**
 
 ---
 
@@ -190,7 +190,7 @@ Once the application is running in EKS, three layers of observability keep watch
 
 ```mermaid
 flowchart LR
-    subgraph Services [boutique namespace]
+    subgraph Services [Knicks namespace]
         GW[gateway /metrics]
         AU[auth /metrics]
         PS[product-service /metrics]
@@ -205,7 +205,7 @@ flowchart LR
     end
 
     subgraph Logging [amazon-cloudwatch namespace]
-        FB[Fluent Bit] -->|pod logs| CW[CloudWatch\n/eks/boutique/pods]
+        FB[Fluent Bit] -->|pod logs| CW[CloudWatch\n/eks/Knicks/pods]
     end
 
     GW & AU & PS & OS & OR & US --> SM
@@ -215,12 +215,12 @@ flowchart LR
 **Metrics — Prometheus + Grafana**
 - Every service exposes a `/metrics` endpoint using `prom-client`
 - A `ServiceMonitor` resource tells the Prometheus Operator which pods to scrape
-- Grafana is pre-loaded with a boutique dashboard via a ConfigMap labelled `grafana_dashboard: "1"` — the Grafana sidecar auto-imports it
+- Grafana is pre-loaded with a Knicks dashboard via a ConfigMap labelled `grafana_dashboard: "1"` — the Grafana sidecar auto-imports it
 
 **Logs — Fluent Bit + CloudWatch**
 - Fluent Bit runs as a DaemonSet in `amazon-cloudwatch`
 - Captures stdout from every pod and ships logs to CloudWatch
-- Log group: `/eks/boutique/pods`
+- Log group: `/eks/Knicks/pods`
 
 **What to check in Grafana:**
 - Request rate by service
@@ -316,7 +316,7 @@ flowchart TD
 
 | File | Stage | Purpose |
 |------|-------|---------|
-| `projects/boutique-microservices/docker-compose.yml` | Stage 1 | Local stack |
+| `projects/Knicks-microservices/docker-compose.yml` | Stage 1 | Local stack |
 | `.github/workflows/ci.yml` | Stage 3 | Build and push images |
 | `projects/Infrastructure/` | Stage 4 | Terraform for AWS |
 | `gitops/argo-cd.yml` | Stage 5 | ArgoCD application definition |

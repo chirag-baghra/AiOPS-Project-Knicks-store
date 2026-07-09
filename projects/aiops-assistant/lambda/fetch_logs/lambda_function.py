@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime, timedelta
 
-DEFAULT_LOG_GROUP = os.environ.get("LOG_GROUP_NAME", "/eks/boutique/pods")
+DEFAULT_LOG_GROUP = os.environ.get("LOG_GROUP_NAME", "/eks/Knicks/pods")
 DEFAULT_REGION = os.environ.get("AWS_REGION", "us-east-1")
 
 

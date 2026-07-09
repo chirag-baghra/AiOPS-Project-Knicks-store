@@ -38,9 +38,9 @@
 
 ## Monitoring
 
-### 1. Boutique Application Metrics Not Found
+### 1. Knicks Application Metrics Not Found
 
-- **Problem**: Even though the metrics of the cluster and node were obtained, the Boutique Application Metrics were not available. While running it via docker compose, it was showing the metrics properly. 
+- **Problem**: Even though the metrics of the cluster and node were obtained, the Knicks Application Metrics were not available. While running it via docker compose, it was showing the metrics properly. 
 
 - **Root Cause**: The ServiceMonitor was configured with the path as `/metrics` but the application metrics were not being scraped properly.
 

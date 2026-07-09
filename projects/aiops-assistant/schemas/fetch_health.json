@@ -9,7 +9,7 @@
     "/fetch_service_health": {
       "get": {
         "summary": "Check EKS cluster health",
-        "description": "Checks the health of an EKS cluster — cluster status, node group health, unhealthy or scaled-down deployments, and crashing pods. Use this when the user asks if services are running, if pods are healthy, if anything is down, or for a general system health check. Default cluster is eks-cluster and default namespace is boutique.",
+        "description": "Checks the health of an EKS cluster — cluster status, node group health, unhealthy or scaled-down deployments, and crashing pods. Use this when the user asks if services are running, if pods are healthy, if anything is down, or for a general system health check. Default cluster is eks-cluster and default namespace is Knicks.",
         "operationId": "fetch_service_health",
         "parameters": [
           {
@@ -26,10 +26,10 @@
             "name": "namespace",
             "in": "query",
             "required": false,
-            "description": "Kubernetes namespace to check deployments and pods in. Defaults to boutique.",
+            "description": "Kubernetes namespace to check deployments and pods in. Defaults to Knicks.",
             "schema": {
               "type": "string",
-              "default": "boutique"
+              "default": "Knicks"
             }
           }
         ],

@@ -1,7 +1,7 @@
 {
   "name": "orders-service",
   "version": "1.0.0",
-  "description": "Order management microservice for boutique application",
+  "description": "Order management microservice for Knicks application",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",

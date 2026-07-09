@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth
-  namespace: boutique
+  namespace: Knicks
 spec:
   replicas: 1
   selector:
@@ -26,7 +26,7 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: boutique-secrets
+                  name: Knicks-secrets
                   key: AUTH_DB_URL
 
 --- 
@@ -35,7 +35,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: auth
-  namespace: boutique
+  namespace: Knicks
 spec:
   selector:
     app: auth

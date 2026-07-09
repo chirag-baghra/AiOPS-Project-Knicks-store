@@ -1,14 +1,14 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: boutique-services
+  name: Knicks-services
   namespace: monitoring
   labels:
     release: kube-prometheus-stack
 spec:
   namespaceSelector:
     matchNames:
-      - boutique
+      - Knicks
   selector:
     matchLabels:
       app: gateway   

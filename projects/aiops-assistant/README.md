@@ -172,7 +172,7 @@ aiops-assistant/
 ## Sample Questions to Ask Kira
 
 - Why are we seeing 503 errors in the last hour?
-- Is CPU usage high across the boutique services?
+- Is CPU usage high across the Knicks services?
 - Check database connections and latency
 - Are all pods healthy? Any restarts?
 - What are the most frequent errors in the last 2 hours?
@@ -202,7 +202,7 @@ streamlit run app.py
 ```
 
 ### fetch_logs returns no results
-The default log group is `/eks/boutique/pods`. This group is only created after Fluent Bit starts shipping logs. Make sure `aws-for-fluent-bit` is running:
+The default log group is `/eks/Knicks/pods`. This group is only created after Fluent Bit starts shipping logs. Make sure `aws-for-fluent-bit` is running:
 
 ```bash
 kubectl get pods -n amazon-cloudwatch

@@ -188,6 +188,6 @@ app.get('/products/:id', async (req, res) => {
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
   console.log(`Products service running on port ${PORT}`);
-  console.log(`Connected to database: ${process.env.DB_NAME || 'boutique_auth'}`);
+  console.log(`Connected to database: ${process.env.DB_NAME || 'Knicks_auth'}`);
   console.log(`Images served from: /public/product-images/`);
 });

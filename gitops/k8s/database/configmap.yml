@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-init-scripts
-  namespace: boutique
+  namespace: Knicks
 data:
   data:
   10-create-databases.sql: |

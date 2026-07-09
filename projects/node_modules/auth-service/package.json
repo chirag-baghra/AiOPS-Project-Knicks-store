@@ -1,7 +1,7 @@
 {
   "name": "auth-service",
   "version": "1.0.0",
-  "description": "Authentication microservice for boutique application",
+  "description": "Authentication microservice for Knicks application",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",
@@ -9,7 +9,7 @@
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["auth", "microservice", "boutique"],
+  "keywords": ["auth", "microservice", "Knicks"],
   "author": "",
   "license": "ISC",
   "dependencies": {

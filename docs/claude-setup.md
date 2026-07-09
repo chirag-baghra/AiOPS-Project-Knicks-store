@@ -43,7 +43,7 @@ This instructs Claude to explain its reasoning before taking any action — so y
 You can add any project-specific rules. Common examples:
 
 ```markdown
-# Always use the boutique namespace unless told otherwise
+# Always use the Knicks namespace unless told otherwise
 # Never run terraform apply without showing the plan first
 # Prefer kubectl over raw AWS CLI for cluster operations
 # Branch naming convention: feature/<name>, fix/<name>
@@ -281,7 +281,7 @@ The one used in this project puts Claude in safe execution mode — it must expl
 You can customise it with project-specific rules:
 
 ```markdown
-# Always use the boutique namespace unless told otherwise
+# Always use the Knicks namespace unless told otherwise
 # Never run terraform apply without showing the plan first
 # Branch naming: feature/<name>, fix/<name>
 ```

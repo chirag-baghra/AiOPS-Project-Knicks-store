@@ -1,4 +1,4 @@
-name: Boutique CI Pipeline
+name: Knicks CI Pipeline
 
 on:
   push:
@@ -44,9 +44,9 @@ jobs:
       - name: Build Docker Image
         run: |
           if [ "${{ matrix.service }}" == "frontend" ]; then
-            BUILD_PATH="projects/boutique-microservices/frontend"
+            BUILD_PATH="projects/Knicks-microservices/frontend"
           else
-            BUILD_PATH="projects/boutique-microservices/backend/services/${{ matrix.service }}"
+            BUILD_PATH="projects/Knicks-microservices/backend/services/${{ matrix.service }}"
           fi
 
           echo "Building from $BUILD_PATH"

@@ -268,7 +268,7 @@ A user reports the app is slow. Your system has 20 services. Which one is the bo
 | **S**aturation | Is it being asked to do more than it can handle? |
 | **E**rrors | Is it producing errors? |
 
-**In this project:** Every service exposes a `/metrics` endpoint. Prometheus scrapes all services every 15 seconds via the `ServiceMonitor` in the GitOps manifests. Grafana is provisioned with Prometheus as the default datasource and a pre-loaded boutique dashboard auto-imported via ConfigMap label.
+**In this project:** Every service exposes a `/metrics` endpoint. Prometheus scrapes all services every 15 seconds via the `ServiceMonitor` in the GitOps manifests. Grafana is provisioned with Prometheus as the default datasource and a pre-loaded Knicks dashboard auto-imported via ConfigMap label.
 
 ---
 

@@ -242,7 +242,7 @@ npm start          # http://localhost:3000, proxies /api -> :3001
 
 ## Project history
 
-This project was originally a girls' fashion boutique demo and was rebranded
+This project was originally a girls' fashion Knicks demo and was rebranded
 end-to-end into the NY Knicks team store. The rebrand touched ~60 files:
 
 - Frontend theme, layout, copy, and product images

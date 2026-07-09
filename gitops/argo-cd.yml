@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: boutique
+  name: Knicks
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/vishakhasadhwani/DevOps-Practice-Guide.git'
+    repoURL: 'https://github.com/chirag-baghra/AiOPS-Project-Knicks-store.git'
     targetRevision: main
     path: gitops
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: boutique
+    namespace: Knicks
   syncPolicy: {}
   # syncPolicy:
   #   automated:

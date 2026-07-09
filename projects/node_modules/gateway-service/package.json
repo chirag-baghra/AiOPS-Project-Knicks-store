@@ -1,7 +1,7 @@
 {
   "name": "gateway-service",
   "version": "1.0.0",
-  "description": "API Gateway for boutique microservices",
+  "description": "API Gateway for Knicks microservices",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",

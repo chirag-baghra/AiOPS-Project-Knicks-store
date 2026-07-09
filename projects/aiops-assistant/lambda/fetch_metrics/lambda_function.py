@@ -5,7 +5,7 @@ from datetime import datetime
 
 PROMETHEUS_URL = "http://<YOUR_PROMETHEUS_ELB_URL>:9090"
 
-DEFAULT_NAMESPACE = "boutique"
+DEFAULT_NAMESPACE = "Knicks"
 
 METRIC_QUERIES = {
     "pod_cpu_utilization": 'sum(rate(container_cpu_usage_seconds_total{{namespace="{namespace}", container!=""}}[5m])) by (pod)',
