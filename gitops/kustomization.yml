@@ -21,7 +21,7 @@ resources:
 configMapGenerator:
   - name: knicks-db-dump
     files:
-      - k8s/database/knicks_full.sql
+      - k8s/database/Knicks_full.sql
 
 generatorOptions:
   disableNameSuffixHash: true
