@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: Knicks-postgres
-  namespace: Knicks
+  name: knicks-postgres
+  namespace: knicks
 spec:
-  serviceName: Knicks-postgres
+  serviceName: knicks-postgres
   replicas: 1
   selector:
     matchLabels:
@@ -25,7 +25,7 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: Knicks-secrets
+                  name: knicks-secrets
                   key: POSTGRES_PASSWORD
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata

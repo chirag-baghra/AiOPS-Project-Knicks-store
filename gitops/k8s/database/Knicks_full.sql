@@ -120,7 +120,7 @@ SET row_security = off;
 \unrestrict p93g7CKAQWVb1e708wOtDKio78lYfkotgMJbdaeeGrAJgSu4jd9FdSxmzP0Fbsr
 
 --
--- Database "Knicks_db" dump
+-- Database "knicks_db" dump
 --
 
 --
@@ -144,16 +144,16 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: Knicks_db; Type: DATABASE; Schema: -; Owner: postgres
+-- Name: knicks_db; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE Knicks_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.utf8';
+CREATE DATABASE knicks_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.utf8';
 
 
-ALTER DATABASE Knicks_db OWNER TO postgres;
+ALTER DATABASE knicks_db OWNER TO postgres;
 
 \unrestrict ngudfYNR3sTyFZmukmjOIzghQB4ahIsKvznaRZCha28ykfB67HutxK8D38j5Tad
-\connect Knicks_db
+\connect knicks_db
 \restrict ngudfYNR3sTyFZmukmjOIzghQB4ahIsKvznaRZCha28ykfB67HutxK8D38j5Tad
 
 SET statement_timeout = 0;
@@ -337,11 +337,11 @@ COPY public.product_images (id, product_id, image_url, alt_text, is_primary, sor
 --
 
 COPY public.products (id, name, slug, description, short_description, sku, brand, category_id, price, compare_price, materials, care_instructions, inventory_quantity, is_featured, created_at, updated_at) FROM stdin;
-d463e74a-84cb-42b4-82e1-da0564548fb7	Silk Evening Gown	silk-evening-gown	Beautiful floor-length gown crafted from premium silk	Luxurious silk evening gown	LEG-001	LUXE Knicks	10000000-0000-0000-0000-000000000001	1899.00	2299.00	\N	\N	15	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
-8f712af6-9469-4bff-abe1-6746e8077bfe	Cashmere Coat	cashmere-coat	Elegant wool and cashmere blend coat for winter	Warm luxury coat	COAT-001	LUXE Knicks	10000000-0000-0000-0000-000000000004	899.00	1200.00	\N	\N	20	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
-36f64ff4-dbe5-455f-b35a-bf1e2bfa7771	Leather Handbag	leather-handbag	Premium Italian leather tote bag	Luxury leather tote	BAG-001	LUXE Knicks	10000000-0000-0000-0000-000000000003	599.00	799.00	\N	\N	25	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
-4d73607a-83c6-4cc4-b8df-23f93d53e47f	Diamond Necklace	diamond-necklace	Stunning diamond pendant necklace	Elegant diamond jewelry	JWL-001	LUXE Knicks	10000000-0000-0000-0000-000000000004	2999.00	3999.00	\N	\N	10	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
-b0df682a-09be-4151-a96e-dd9636daf762	Designer Heels	designer-heels	Elegant stiletto heels in premium leather	Luxury high heels	SHOES-001	LUXE Knicks	10000000-0000-0000-0000-000000000005	499.00	699.00	\N	\N	18	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
+d463e74a-84cb-42b4-82e1-da0564548fb7	Silk Evening Gown	silk-evening-gown	Beautiful floor-length gown crafted from premium silk	Luxurious silk evening gown	LEG-001	LUXE knicks	10000000-0000-0000-0000-000000000001	1899.00	2299.00	\N	\N	15	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
+8f712af6-9469-4bff-abe1-6746e8077bfe	Cashmere Coat	cashmere-coat	Elegant wool and cashmere blend coat for winter	Warm luxury coat	COAT-001	LUXE knicks	10000000-0000-0000-0000-000000000004	899.00	1200.00	\N	\N	20	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
+36f64ff4-dbe5-455f-b35a-bf1e2bfa7771	Leather Handbag	leather-handbag	Premium Italian leather tote bag	Luxury leather tote	BAG-001	LUXE knicks	10000000-0000-0000-0000-000000000003	599.00	799.00	\N	\N	25	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
+4d73607a-83c6-4cc4-b8df-23f93d53e47f	Diamond Necklace	diamond-necklace	Stunning diamond pendant necklace	Elegant diamond jewelry	JWL-001	LUXE knicks	10000000-0000-0000-0000-000000000004	2999.00	3999.00	\N	\N	10	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
+b0df682a-09be-4151-a96e-dd9636daf762	Designer Heels	designer-heels	Elegant stiletto heels in premium leather	Luxury high heels	SHOES-001	LUXE knicks	10000000-0000-0000-0000-000000000005	499.00	699.00	\N	\N	18	t	2026-02-07 13:03:01.388084	2026-02-07 13:03:01.388084
 \.
 
 
@@ -350,8 +350,8 @@ b0df682a-09be-4151-a96e-dd9636daf762	Designer Heels	designer-heels	Elegant stile
 --
 
 COPY public.users (id, email, password_hash, first_name, last_name, role, created_at, updated_at) FROM stdin;
-f3d73cfa-b59e-4a9a-a5fa-848c433e631c	admin@Knicks.com	$2a$10$placeholder_hash	Admin	User	admin	2026-02-07 13:03:01.387149	2026-02-07 13:03:01.387149
-e39ddf24-30a5-4ee3-86f4-8ba89a103040	customer@Knicks.com	$2a$10$placeholder_hash	John	Doe	customer	2026-02-07 13:03:01.387149	2026-02-07 13:03:01.387149
+f3d73cfa-b59e-4a9a-a5fa-848c433e631c	admin@knicks.com	$2a$10$placeholder_hash	Admin	User	admin	2026-02-07 13:03:01.387149	2026-02-07 13:03:01.387149
+e39ddf24-30a5-4ee3-86f4-8ba89a103040	customer@knicks.com	$2a$10$placeholder_hash	John	Doe	customer	2026-02-07 13:03:01.387149	2026-02-07 13:03:01.387149
 \.
 
 
@@ -839,11 +839,11 @@ COPY public.product_images (id, product_id, image_url, alt_text, is_primary, sor
 --
 
 COPY public.products (id, name, slug, description, short_description, sku, brand, category_id, price, compare_price, materials, care_instructions, inventory_quantity, is_featured, created_at, updated_at) FROM stdin;
-67be2d5e-ecfb-4bf9-b751-8474f9d7bcac	Silk Evening Gown	silk-evening-gown	Beautiful floor-length gown crafted from premium silk	Luxurious silk evening gown	LEG-001	LUXE Knicks	10000000-0000-0000-0000-000000000001	1899.00	2299.00	\N	\N	15	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
-7554ae99-7c37-4ba7-b348-6a5a35ec5cc5	Cashmere Coat	cashmere-coat	Elegant wool and cashmere blend coat for winter	Warm luxury coat	COAT-001	LUXE Knicks	10000000-0000-0000-0000-000000000004	899.00	1200.00	\N	\N	20	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
-9be82459-8ef3-45cb-ad70-7adbe3df843f	Leather Handbag	leather-handbag	Premium Italian leather tote bag	Luxury leather tote	BAG-001	LUXE Knicks	10000000-0000-0000-0000-000000000003	599.00	799.00	\N	\N	25	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
-25e17b84-2c9a-4e8c-bc78-0ab6af7d3fb0	Diamond Necklace	diamond-necklace	Stunning diamond pendant necklace	Elegant diamond jewelry	JWL-001	LUXE Knicks	10000000-0000-0000-0000-000000000004	2999.00	3999.00	\N	\N	10	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
-9e873053-7127-458e-80d7-4dbce3018e6e	Designer Heels	designer-heels	Elegant stiletto heels in premium leather	Luxury high heels	SHOES-001	LUXE Knicks	10000000-0000-0000-0000-000000000005	499.00	699.00	\N	\N	18	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
+67be2d5e-ecfb-4bf9-b751-8474f9d7bcac	Silk Evening Gown	silk-evening-gown	Beautiful floor-length gown crafted from premium silk	Luxurious silk evening gown	LEG-001	LUXE knicks	10000000-0000-0000-0000-000000000001	1899.00	2299.00	\N	\N	15	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
+7554ae99-7c37-4ba7-b348-6a5a35ec5cc5	Cashmere Coat	cashmere-coat	Elegant wool and cashmere blend coat for winter	Warm luxury coat	COAT-001	LUXE knicks	10000000-0000-0000-0000-000000000004	899.00	1200.00	\N	\N	20	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
+9be82459-8ef3-45cb-ad70-7adbe3df843f	Leather Handbag	leather-handbag	Premium Italian leather tote bag	Luxury leather tote	BAG-001	LUXE knicks	10000000-0000-0000-0000-000000000003	599.00	799.00	\N	\N	25	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
+25e17b84-2c9a-4e8c-bc78-0ab6af7d3fb0	Diamond Necklace	diamond-necklace	Stunning diamond pendant necklace	Elegant diamond jewelry	JWL-001	LUXE knicks	10000000-0000-0000-0000-000000000004	2999.00	3999.00	\N	\N	10	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
+9e873053-7127-458e-80d7-4dbce3018e6e	Designer Heels	designer-heels	Elegant stiletto heels in premium leather	Luxury high heels	SHOES-001	LUXE knicks	10000000-0000-0000-0000-000000000005	499.00	699.00	\N	\N	18	t	2026-02-07 13:04:03.836716	2026-02-07 13:04:03.836716
 \.
 
 
@@ -852,8 +852,8 @@ COPY public.products (id, name, slug, description, short_description, sku, brand
 --
 
 COPY public.users (id, email, password_hash, first_name, last_name, role, created_at, updated_at) FROM stdin;
-bfd7090c-8428-4134-b17a-485bc520efc4	admin@Knicks.com	$2a$10$placeholder_hash	Admin	User	admin	2026-02-07 13:04:03.835464	2026-02-07 13:04:03.835464
-500c014d-299d-48b9-b107-20bc3518b806	customer@Knicks.com	$2a$10$placeholder_hash	John	Doe	customer	2026-02-07 13:04:03.835464	2026-02-07 13:04:03.835464
+bfd7090c-8428-4134-b17a-485bc520efc4	admin@knicks.com	$2a$10$placeholder_hash	Admin	User	admin	2026-02-07 13:04:03.835464	2026-02-07 13:04:03.835464
+500c014d-299d-48b9-b107-20bc3518b806	customer@knicks.com	$2a$10$placeholder_hash	John	Doe	customer	2026-02-07 13:04:03.835464	2026-02-07 13:04:03.835464
 \.
 
 

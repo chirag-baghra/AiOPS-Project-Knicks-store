@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/chirag-baghra/AiOPS-Project-Knicks-store.git'
+    repoURL: 'https://github.com/chirag-baghra/AiOPS-Project-knicks-store.git'
     targetRevision: main
     path: gitops
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: Knicks
+    namespace: knicks
   syncPolicy: {}
   # syncPolicy:
   #   automated:

@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: Knicks
+namespace: knicks
 
 resources:
   - namespace.yml
@@ -19,9 +19,9 @@ resources:
   - k8s/grafana-dashboard.yml
 
 configMapGenerator:
-  - name: Knicks-db-dump
+  - name: knicks-db-dump
     files:
-      - k8s/database/Knicks_full.sql
+      - k8s/database/knicks_full.sql
 
 generatorOptions:
   disableNameSuffixHash: true

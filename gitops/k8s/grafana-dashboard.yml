@@ -6,7 +6,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
 data:
-  Knicks-microservices.json: |
+  knicks-microservices.json: |
     {
       "annotations": {
         "list": []
@@ -528,12 +528,12 @@ data:
           "targets": [
             {
               "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"Knicks\", container!=\"\", container!=\"POD\"}[$__rate_interval]))",
+              "expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"knicks\", container!=\"\", container!=\"POD\"}[$__rate_interval]))",
               "legendFormat": "{{pod}}",
               "refId": "A"
             }
           ],
-          "title": "Pod CPU Usage (Knicks namespace)",
+          "title": "Pod CPU Usage (knicks namespace)",
           "type": "timeseries"
         },
         {
@@ -568,12 +568,12 @@ data:
           "targets": [
             {
               "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "sum by (pod) (container_memory_working_set_bytes{namespace=\"Knicks\", container!=\"\", container!=\"POD\"})",
+              "expr": "sum by (pod) (container_memory_working_set_bytes{namespace=\"knicks\", container!=\"\", container!=\"POD\"})",
               "legendFormat": "{{pod}}",
               "refId": "A"
             }
           ],
-          "title": "Pod Memory Usage (Knicks namespace)",
+          "title": "Pod Memory Usage (knicks namespace)",
           "type": "timeseries"
         },
         {
@@ -609,7 +609,7 @@ data:
           "targets": [
             {
               "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "kube_pod_container_status_restarts_total{namespace=\"Knicks\", container!=\"\"}",
+              "expr": "kube_pod_container_status_restarts_total{namespace=\"knicks\", container!=\"\"}",
               "legendFormat": "{{container}}",
               "refId": "A"
             }
@@ -707,7 +707,7 @@ data:
       "refresh": "5s",
       "schemaVersion": 38,
       "style": "dark",
-      "tags": ["Knicks", "microservices"],
+      "tags": ["knicks", "microservices"],
       "templating": {
         "list": [
           {
@@ -745,8 +745,8 @@ data:
       },
       "timepicker": {},
       "timezone": "",
-      "title": "Knicks Microservices",
-      "uid": "Knicks-microservices",
+      "title": "knicks Microservices",
+      "uid": "knicks-microservices",
       "version": 1,
       "weekStart": ""
     }
