@@ -5,9 +5,10 @@ import urllib.parse
 from datetime import datetime, timedelta
 
 DEFAULT_CLUSTER = "eks-cluster"
-DEFAULT_NAMESPACE = "Knicks"
+DEFAULT_NAMESPACE = "knicks"
 REGION = "us-east-1"
-PROMETHEUS_URL = "http://<YOUR_PROMETHEUS_ELB_URL>:9090"
+PROMETHEUS_URL = "http://aa540d4e0ab704fa18c3b7a31982c910-282801422.us-east-1.elb.amazonaws.com:9090"
+
 
 def prometheus_query(query):
     """Run an instant PromQL query and return the result."""

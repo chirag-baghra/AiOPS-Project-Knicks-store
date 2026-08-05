@@ -156,7 +156,7 @@ st.markdown("""
 
 # --- Validate Config ---
 # Access keys optional: boto3 uses ~/.aws/credentials, SSO, env, or IAM role if unset.
-config_ok = bool(AGENT_ID and AGENT_ALIAS_ID)
+config_ok = bool(os.getenv("MANTLE_API_KEY"))
 
 
 # --- Initialize Session State ---
@@ -178,27 +178,12 @@ def get_bedrock_client():
     return boto3.client(**kwargs)
 
 
+import ai_agent
+
 def invoke_agent(prompt: str) -> str:
-    """Send a message to the Bedrock Agent and get the response."""
-    client = get_bedrock_client()
-
+    """Send a message to Patrick via Bedrock Mantle + Qwen3-32B."""
     try:
-        response = client.invoke_agent(
-            agentId=AGENT_ID,
-            agentAliasId=AGENT_ALIAS_ID,
-            sessionId=st.session_state.session_id,
-            inputText=prompt,
-        )
-
-        full_response = ""
-        for event in response["completion"]:
-            if "chunk" in event:
-                chunk = event["chunk"]
-                if "bytes" in chunk:
-                    full_response += chunk["bytes"].decode("utf-8")
-
-        return full_response
-
+        return ai_agent.investigate(prompt)
     except Exception as e:
         return f"⚠️ Error: {str(e)}"
 
@@ -221,8 +206,9 @@ if not config_ok:
     </div>
     """, unsafe_allow_html=True)
 
-    st.error("Missing Bedrock agent settings. Create a `.env` file with at least:")
-    st.code("""AWS_REGION=us-east-1
+    st.error("Missing Mantle API key. Create a `.env` file with at least:")
+    st.code("""MANTLE_API_KEY=your_mantle_bearer_token
+AWS_REGION=us-east-1
 BEDROCK_AGENT_ID=your_agent_id
 BEDROCK_AGENT_ALIAS_ID=TSTALIASID
 

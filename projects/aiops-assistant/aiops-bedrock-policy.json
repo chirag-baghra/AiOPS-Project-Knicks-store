@@ -1,0 +1,26 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "InvokeAgentLambdas",
+            "Effect": "Allow",
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:us-east-1:625242091771:function:aiops-*"
+        },
+        {
+            "Sid": "InvokeFoundationModel",
+            "Effect": "Allow",
+            "Action": [
+                "bedrock:InvokeModel",
+                "bedrock:InvokeModelWithResponseStream"
+            ],
+            "Resource": [
+                "arn:aws:bedrock:us-east-1:625242091771:inference-profile/us.qwen.qwen3-32b-v1:0",
+                "arn:aws:bedrock:us-east-1::foundation-model/qwen.qwen3-32b-v1:0",
+                "arn:aws:bedrock:us-east-2::foundation-model/qwen.qwen3-32b-v1:0",
+                "arn:aws:bedrock:us-west-1::foundation-model/qwen.qwen3-32b-v1:0",
+                "arn:aws:bedrock:us-west-2::foundation-model/qwen.qwen3-32b-v1:0"
+            ]
+        }
+    ]
+}

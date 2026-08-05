@@ -1,0 +1,19 @@
+{
+  "actionGroup": "fetch_metrics",
+  "apiPath": "/fetch_cloudwatch_metrics",
+  "httpMethod": "GET",
+  "parameters": [
+    {
+      "name": "metric_name",
+      "value": "pod_cpu_utilization"
+    },
+    {
+      "name": "namespace",
+      "value": "knicks"
+    },
+    {
+      "name": "hours_back",
+      "value": "1"
+    }
+  ]
+}
