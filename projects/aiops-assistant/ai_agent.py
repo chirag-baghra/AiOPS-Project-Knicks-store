@@ -21,6 +21,25 @@ MANTLE_BASE_URL = (
 )
 
 
+def _resolve_mantle_key() -> str | None:
+    """Resolve Mantle bearer token from env or AWS Secrets Manager."""
+    key = os.getenv("MANTLE_API_KEY")
+    if key:
+        return key
+    secret_name = os.getenv("MANTLE_SECRET_NAME", "aiops/mantle-api-key")
+    try:
+        client = boto3.client("secretsmanager", region_name=REGION)
+        resp = client.get_secret_value(SecretId=secret_name)
+        body = resp.get("SecretString", "{}")
+        try:
+            parsed = json.loads(body)
+            return parsed.get("MANTLE_API_KEY") or parsed.get("mantle_api_key") or body
+        except json.JSONDecodeError:
+            return body.strip().strip('"')
+    except Exception:
+        return None
+
+
 
 SYSTEM_PROMPT = """
 
@@ -724,15 +743,13 @@ def invoke_lambda(tool_name, arguments):
 def get_client():
 
 
-    key=os.environ.get(
-        "MANTLE_API_KEY"
-    )
+    key = _resolve_mantle_key()
 
 
     if not key:
 
         raise Exception(
-            "MANTLE_API_KEY missing"
+            "MANTLE_API_KEY missing (set env var or store secret 'aiops/mantle-api-key' in AWS Secrets Manager)"
         )
 
 

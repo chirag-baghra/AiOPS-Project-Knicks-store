@@ -1,12 +1,16 @@
-"""
-AIOps Assistant — Streamlit Chat UI
+r"""
+AIOps Assistant - Streamlit Chat UI
 Connects to AWS Bedrock Agent for root cause analysis.
 
 Setup:
     1. pip install -r requirements.txt
-    2. cp .env.example .env
-    3. Fill in your values in .env
-    4. streamlit run app.py
+    2. .\scripts\setup-env.ps1        (one-time; persists Mantle key to AWS Secrets Manager)
+    3. streamlit run app.py
+
+The Mantle API key is resolved in this order:
+    1. MANTLE_API_KEY in process environment / .env
+    2. AWS Secrets Manager secret 'aiops/mantle-api-key'
+If both are missing, the app stops with the NOT CONFIGURED banner.
 """
 
 import streamlit as st
@@ -19,6 +23,34 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+
+def _resolve_mantle_key() -> str | None:
+    """Resolve the Mantle bearer token from env or AWS Secrets Manager.
+
+    Precedence: process env / .env  >  AWS Secrets Manager.
+    Falls back to Secrets Manager so the app stays working even after .env
+    is deleted, mis-committed, or never created.
+    """
+    key = os.getenv("MANTLE_API_KEY")
+    if key:
+        return key
+
+    region = os.getenv("AWS_REGION", "us-east-1")
+    secret_name = os.getenv("MANTLE_SECRET_NAME", "aiops/mantle-api-key")
+    try:
+        client = boto3.client("secretsmanager", region_name=region)
+        resp = client.get_secret_value(SecretId=secret_name)
+        body = resp.get("SecretString", "{}")
+        # Accept both {"MANTLE_API_KEY": "..."} and a bare token string.
+        try:
+            parsed = json.loads(body)
+            return parsed.get("MANTLE_API_KEY") or parsed.get("mantle_api_key") or body
+        except json.JSONDecodeError:
+            return body.strip().strip('"')
+    except Exception:
+        return None
+
+
 # --- Config from environment ---
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
@@ -26,6 +58,7 @@ AWS_SESSION_TOKEN = os.getenv("AWS_SESSION_TOKEN")
 AWS_REGION = os.getenv("AWS_REGION", "eu-north-1")
 AGENT_ID = os.getenv("BEDROCK_AGENT_ID")
 AGENT_ALIAS_ID = os.getenv("BEDROCK_AGENT_ALIAS_ID")
+MANTLE_API_KEY = _resolve_mantle_key()
 
 
 # --- Page Config ---
@@ -156,7 +189,7 @@ st.markdown("""
 
 # --- Validate Config ---
 # Access keys optional: boto3 uses ~/.aws/credentials, SSO, env, or IAM role if unset.
-config_ok = bool(os.getenv("MANTLE_API_KEY"))
+config_ok = bool(MANTLE_API_KEY)
 
 
 # --- Initialize Session State ---
@@ -179,6 +212,10 @@ def get_bedrock_client():
 
 
 import ai_agent
+
+# Propagate the resolved Mantle key so ai_agent.py sees it without re-resolving.
+if MANTLE_API_KEY and not os.getenv("MANTLE_API_KEY"):
+    os.environ["MANTLE_API_KEY"] = MANTLE_API_KEY
 
 def invoke_agent(prompt: str) -> str:
     """Send a message to Patrick via Bedrock Mantle + Qwen3-32B."""

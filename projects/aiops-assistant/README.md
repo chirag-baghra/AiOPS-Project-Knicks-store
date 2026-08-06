@@ -118,21 +118,21 @@ This writes 100 realistic log events (503 errors, OOM kills, connection pool exh
 
 ## Step 6: Run the Streamlit UI
 
-```bash
-cp .env.example .env
+### First-time setup (one-time per machine)
+
+Run the setup script. It writes `.env`, persists your Mantle bearer token to **AWS Secrets Manager** under `aiops/mantle-api-key`, and auto-discovers the Bedrock Agent ID + Alias from your AWS account:
+
+```powershell
+# Windows (PowerShell)
+.\scripts\setup-env.ps1
 ```
 
-Edit `.env` and fill in your values:
+You'll be prompted once for your Mantle bearer token. From then on, the app reads it directly from Secrets Manager — **`.env` can be deleted and the app still works.**
 
-```env
-AWS_REGION=us-east-1
-BEDROCK_AGENT_ID=<YOUR_AGENT_ID>
-BEDROCK_AGENT_ALIAS_ID=TSTALIASID
+To re-run later without re-typing the key (e.g. after `deploy.sh` creates a new agent alias):
 
-# Optional — omit to use your AWS CLI profile / SSO / IAM role:
-# AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY>
-# AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_KEY>
-# AWS_SESSION_TOKEN=<YOUR_SESSION_TOKEN>
+```powershell
+.\scripts\setup-env.ps1 -SkipMantle
 ```
 
 Install dependencies and start the UI:
@@ -143,6 +143,15 @@ streamlit run app.py
 ```
 
 Open **http://localhost:8501** in your browser.
+
+### How the Mantle key is resolved
+
+`app.py` and `ai_agent.py` look for `MANTLE_API_KEY` in this order:
+
+1. Process environment / `.env`
+2. AWS Secrets Manager secret `aiops/mantle-api-key` (in the region from `AWS_REGION`)
+
+The "NOT CONFIGURED" banner only appears if both sources are missing.
 
 ---
 
@@ -193,13 +202,22 @@ The deploy script will fail at agent creation if model access hasn't been reques
 After running `deploy.sh`, the agent status shows `PREPARING`. This is normal and takes 30–60 seconds. If it stays in this state, check the Bedrock console for validation errors — usually caused by a malformed OpenAPI schema or a Lambda ARN that doesn't exist.
 
 ### Streamlit shows "NOT CONFIGURED"
-The app requires `BEDROCK_AGENT_ID` and `BEDROCK_AGENT_ALIAS_ID` to be set in `.env`. If you started Streamlit before populating `.env`, stop it and restart — `load_dotenv()` only reads the file at startup.
+
+`app.py` reads the Mantle bearer token from either `.env` or AWS Secrets Manager (`aiops/mantle-api-key`). The "NOT CONFIGURED" banner means **both** sources are empty.
+
+Fix it permanently (one-time):
+
+```powershell
+.\scripts\setup-env.ps1
+```
+
+Or, to verify Secrets Manager directly:
 
 ```bash
-# Stop and restart
-pkill -f "streamlit run app.py"
-streamlit run app.py
+aws secretsmanager get-secret-value --secret-id aiops/mantle-api-key --region us-east-1
 ```
+
+After Streamlit is restarted with a valid key in either place, the banner will not return even if `.env` is later deleted.
 
 ### fetch_logs returns no results
 The default log group is `/eks/Knicks/pods`. This group is only created after Fluent Bit starts shipping logs. Make sure `aws-for-fluent-bit` is running:
